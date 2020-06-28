@@ -10,10 +10,13 @@ public class Tank {
 
     private boolean moving = false;
 
-    public Tank(int x, int y, Dir dir) {
+    private TankFrame tf = null;
+
+    public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tf = tf;
     }
 
     public boolean isMoving() {
@@ -44,5 +47,9 @@ public class Tank {
             case DOWN: y += SPEED;break;
             case UP: y -= SPEED;break;
         }
+    }
+
+    public void fire() {
+        tf.bullet = new Bullet(this.x+25,this.y,this.dir);
     }
 }
