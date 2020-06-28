@@ -8,30 +8,20 @@ public class Tank {
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 10;
 
+    private boolean moving = false;
+
     public Tank(int x, int y, Dir dir) {
         this.x = x;
         this.y = y;
         this.dir = dir;
     }
 
-    public int getX() {
-        return x;
+    public boolean isMoving() {
+        return moving;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public Dir getDir() {
-        return dir;
+    public void setMoving(boolean moving) {
+        this.moving = moving;
     }
 
     public void setDir(Dir dir) {
@@ -40,7 +30,11 @@ public class Tank {
 
     public void paint(Graphics g) {
         g.fillRect(x,y,50,50);
+        move();
+    }
 
+    private void move() {
+        if(!moving) return;
         switch (dir){
             case RIGHT: x += SPEED;break;
             case LEFT: x -= SPEED;break;
