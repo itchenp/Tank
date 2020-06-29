@@ -5,11 +5,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankFrame extends Frame {
 
     Tank tank = new Tank(200,200,Dir.DOWN,this);
-    Bullet bullet = new Bullet(300,300,Dir.DOWN);
+    List<Bullet> bullets = new ArrayList<Bullet>();
     static final int GAME_WIDTH = 800,GAME_HEIGTH = 600;
 
     public TankFrame() throws HeadlessException {
@@ -48,7 +50,9 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         tank.paint(g);
-        bullet.paint(g);
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).paint(g);
+        }
     }
 
     class MyKeyListener extends KeyAdapter{
