@@ -8,6 +8,8 @@ public class Tank {
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
 
+    public static int WIDTH ,HIGHT;
+
     private boolean moving = false;
 
     private TankFrame tf = null;
@@ -33,10 +35,26 @@ public class Tank {
 
     public void paint(Graphics g) {
         switch (dir){
-            case RIGHT:g.drawImage(ResourceMgr.tankR,x,y,null);break;
-            case LEFT:g.drawImage(ResourceMgr.tankL,x,y,null);break;
-            case DOWN:g.drawImage(ResourceMgr.tankD,x,y,null);break;
-            case UP:g.drawImage(ResourceMgr.tankU,x,y,null);break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.tankR,x,y,null);
+                WIDTH = ResourceMgr.tankR.getWidth();
+                HIGHT = ResourceMgr.tankR.getHeight();
+                break;
+            case LEFT:
+                g.drawImage(ResourceMgr.tankL,x,y,null);
+                WIDTH = ResourceMgr.tankL.getWidth();
+                HIGHT = ResourceMgr.tankL.getHeight();
+                break;
+            case DOWN:
+                g.drawImage(ResourceMgr.tankD,x,y,null);
+                WIDTH = ResourceMgr.tankD.getWidth();
+                HIGHT = ResourceMgr.tankD.getHeight();
+                break;
+            case UP:
+                g.drawImage(ResourceMgr.tankU,x,y,null);
+                WIDTH = ResourceMgr.tankU.getWidth();
+                HIGHT = ResourceMgr.tankU.getHeight();
+                break;
         }
 
         move();
@@ -53,6 +71,11 @@ public class Tank {
     }
 
     public void fire() {
-        tf.bullets.add(new Bullet(this.x+25,this.y,this.dir,this.tf));
+
+        int bX = this.x+Tank.WIDTH/2-Bullet.WIDTH/2;
+        int bY = this.y+Tank.HIGHT/2-Bullet.HIGHT/2;
+
+
+        tf.bullets.add(new Bullet(bX,bY,this.dir,this.tf));
     }
 }

@@ -8,7 +8,7 @@ import java.awt.*;
 public class Bullet {
     private static final int SPEED = 10;
 
-    private static int WIDTH = 5,HIGHT = 5;
+    public static int WIDTH = ResourceMgr.bulletD.getWidth(),HIGHT = ResourceMgr.bulletD.getWidth();
 
     private int x,y;
     private Dir dir;
@@ -30,10 +30,26 @@ public class Bullet {
         }
 
         switch (dir){
-            case RIGHT:g.drawImage(ResourceMgr.bulletR,x,y,null);break;
-            case LEFT:g.drawImage(ResourceMgr.bulletL,x,y,null);break;
-            case DOWN:g.drawImage(ResourceMgr.bulletD,x,y,null);break;
-            case UP:g.drawImage(ResourceMgr.bulletU,x,y,null);break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.bulletR,x,y,null);
+                WIDTH = ResourceMgr.bulletR.getWidth();
+                HIGHT = ResourceMgr.bulletR.getHeight();
+                break;
+            case LEFT:
+                g.drawImage(ResourceMgr.bulletL,x,y,null);
+                WIDTH = ResourceMgr.bulletL.getWidth();
+                HIGHT = ResourceMgr.bulletL.getHeight();
+                break;
+            case DOWN:
+                g.drawImage(ResourceMgr.bulletD,x,y,null);
+                WIDTH = ResourceMgr.bulletD.getWidth();
+                HIGHT = ResourceMgr.bulletD.getHeight();
+                break;
+            case UP:
+                g.drawImage(ResourceMgr.bulletU,x,y,null);
+                WIDTH = ResourceMgr.bulletU.getWidth();
+                HIGHT = ResourceMgr.bulletU.getHeight();
+                break;
         }
 
         move();
