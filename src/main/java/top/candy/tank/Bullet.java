@@ -40,7 +40,7 @@ public class Bullet {
         switch (dir){
             case RIGHT: x += SPEED;break;
             case LEFT: x -= SPEED;break;
-            case DOWN: y += SPEED;break;
+            case DOWN:  y += SPEED;break;
             case UP: y -= SPEED;break;
         }
 

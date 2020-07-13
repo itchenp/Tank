@@ -7,6 +7,20 @@
     <groupId>top.candy.tank</groupId>
     <artifactId>Tank</artifactId>
     <version>1.0-</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
+
+    </dependencies>
 
 
 </project>
