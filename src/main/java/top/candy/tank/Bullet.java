@@ -15,6 +15,7 @@ public class Bullet {
     private TankFrame tf;
     private boolean living = true;
     private Group group = Group.BAD;
+    private Rectangle bulletRec;
 
 
     public Bullet(int x, int y, Dir dir,Group group,TankFrame tf) {
@@ -23,6 +24,7 @@ public class Bullet {
         this.dir = dir;
         this.group = group;
         this.tf = tf;
+        bulletRec = new Rectangle();
     }
 
     public void paint(Graphics g) {
@@ -64,6 +66,8 @@ public class Bullet {
             case UP: y -= SPEED;break;
         }
 
+        bulletRec.setBounds(x,y,WIDTH,HIGHT) ;
+
         if(x <0 || y<0 || x>TankFrame.GAME_WIDTH || y>TankFrame.GAME_HEIGTH){
             living=false;
         }
@@ -71,10 +75,7 @@ public class Bullet {
 
     public void collideWith(Tank tank) {
         if(this.group == tank.getGroup()) return;
-
-        Rectangle bulletRec = new Rectangle(this.x,this.y,WIDTH,HIGHT);
-        Rectangle tankRec = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HIGHT);
-        if(bulletRec.intersects(tankRec)){
+        if(bulletRec.intersects(tank.getTankRec())){
             tank.die();
             this.die();
         }
