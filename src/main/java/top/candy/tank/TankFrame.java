@@ -10,9 +10,11 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    Tank tank = new Tank(200,200,Dir.DOWN,this);
-    List<Bullet> bullets = new ArrayList<Bullet>();
     static final int GAME_WIDTH = 800,GAME_HEIGTH = 600;
+
+    Tank tank = new Tank(GAME_WIDTH/2,GAME_HEIGTH-100,Dir.UP,this);
+    List<Bullet> bullets = new ArrayList<Bullet>();
+    List<Tank> tanks = new ArrayList<Tank>();
 
     public TankFrame() throws HeadlessException {
         setSize(GAME_WIDTH,GAME_HEIGTH);
@@ -52,6 +54,10 @@ public class TankFrame extends Frame {
         tank.paint(g);
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
+        }
+
+        for (int i = 0; i < tanks.size(); i++) {
+            tanks.get(i).paint(g);
         }
     }
 
