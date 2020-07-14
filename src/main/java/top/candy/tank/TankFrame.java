@@ -15,6 +15,7 @@ public class TankFrame extends Frame {
     Tank tank = new Tank(GAME_WIDTH/2,GAME_HEIGTH-100,Dir.UP,Group.GOOD,this);
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<Tank> tanks = new ArrayList<Tank>();
+    Explode explode = new Explode(0,0,false,this);
 
     public TankFrame() throws HeadlessException {
         setSize(GAME_WIDTH,GAME_HEIGTH);
@@ -65,6 +66,9 @@ public class TankFrame extends Frame {
                 bullets.get(i).collideWith(tanks.get(j));
             }
         }
+
+        explode.paint(g);
+
     }
 
     class MyKeyListener extends KeyAdapter{

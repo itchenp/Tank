@@ -122,5 +122,6 @@ public class Tank {
 
     public void die() {
         this.living = false;
+        tf.explode = new Explode(this.x,this.y,true,this.tf);
     }
 }
