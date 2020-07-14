@@ -6,7 +6,7 @@ public class Mian {
         TankFrame tankFrame = new TankFrame();
 
         for (int i = 0; i < 5; i++) {
-            tankFrame.tanks.add(new Tank(20+i*100,80,Dir.DOWN,tankFrame));
+            tankFrame.tanks.add(new Tank(20+i*100,80,Dir.DOWN,Group.BAD,tankFrame));
         }
 
         while (true){

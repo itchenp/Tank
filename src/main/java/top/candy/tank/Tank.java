@@ -1,22 +1,27 @@
 package top.candy.tank;
 
 import java.awt.*;
+import java.util.Random;
+
 
 public class Tank {
 
     private int x,y;
     private Dir dir = Dir.UP;
-    private static final int SPEED = 5;
+    private static final int SPEED = 2;
 
     public static int WIDTH ,HIGHT;
-    private boolean moving = false;
+    private boolean moving = true;
     private TankFrame tf = null;
     private boolean living = true;
+    private Group group = Group.BAD;
+    private Random random = new Random();
 
-    public Tank(int x, int y, Dir dir, TankFrame tf) {
+    public Tank(int x, int y, Dir dir,Group group, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tf = tf;
     }
 
@@ -26,6 +31,10 @@ public class Tank {
 
     public int getY() {
         return y;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 
     public boolean isMoving() {
@@ -79,6 +88,8 @@ public class Tank {
             case DOWN: y += SPEED;break;
             case UP: y -= SPEED;break;
         }
+
+        if(random.nextInt(10)>8) fire();
     }
 
     public void fire() {
@@ -87,7 +98,7 @@ public class Tank {
         int bY = this.y+Tank.HIGHT/2-Bullet.HIGHT/2;
 
 
-        tf.bullets.add(new Bullet(bX,bY,this.dir,this.tf));
+        tf.bullets.add(new Bullet(bX,bY,this.dir,this.group,this.tf));
     }
 
     public void die() {
