@@ -62,20 +62,20 @@ public class Tank {
     private void changeWidthAndHigth(){
         switch (dir){
             case RIGHT:
-                WIDTH = ResourceMgr.tankR.getWidth();
-                HIGHT = ResourceMgr.tankR.getHeight();
+                WIDTH = ResourceMgr.goodTankR.getWidth();
+                HIGHT = ResourceMgr.goodTankR.getHeight();
                 break;
             case LEFT:
-                WIDTH = ResourceMgr.tankL.getWidth();
-                HIGHT = ResourceMgr.tankL.getHeight();
+                WIDTH = ResourceMgr.goodTankL.getWidth();
+                HIGHT = ResourceMgr.goodTankL.getHeight();
                 break;
             case DOWN:
-                WIDTH = ResourceMgr.tankD.getWidth();
-                HIGHT = ResourceMgr.tankD.getHeight();
+                WIDTH = ResourceMgr.goodTankD.getWidth();
+                HIGHT = ResourceMgr.goodTankD.getHeight();
                 break;
             case UP:
-                WIDTH = ResourceMgr.tankU.getWidth();
-                HIGHT = ResourceMgr.tankU.getHeight();
+                WIDTH = ResourceMgr.goodTankU.getWidth();
+                HIGHT = ResourceMgr.goodTankU.getHeight();
                 break;
         }
     }
@@ -86,10 +86,10 @@ public class Tank {
         }
 
         switch (dir){
-            case RIGHT: g.drawImage(ResourceMgr.tankR,x,y,null);break;
-            case LEFT: g.drawImage(ResourceMgr.tankL,x,y,null);break;
-            case DOWN: g.drawImage(ResourceMgr.tankD,x,y,null);break;
-            case UP: g.drawImage(ResourceMgr.tankU,x,y,null);break;
+            case RIGHT: g.drawImage(ResourceMgr.goodTankR,x,y,null);break;
+            case LEFT: g.drawImage(ResourceMgr.goodTankL,x,y,null);break;
+            case DOWN: g.drawImage(ResourceMgr.goodTankD,x,y,null);break;
+            case UP: g.drawImage(ResourceMgr.goodTankU,x,y,null);break;
         }
 
         changeWidthAndHigth();
