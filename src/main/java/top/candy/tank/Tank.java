@@ -8,10 +8,10 @@ public class Tank {
 
     private int x,y;
     private Dir dir = Dir.UP;
-    private static final int SPEED = 10;
+    private static final int SPEED = 8;
 
     public static int WIDTH ,HIGHT;
-    private boolean moving = false;
+    private boolean moving = true;
     private TankFrame tf = null;
     private boolean living = true;
     private Group group = Group.BAD;
@@ -108,7 +108,14 @@ public class Tank {
 
         tankRec.setBounds(x,y,WIDTH,HIGHT);
 
-        if(random.nextInt(10)>8) fire();
+        if(this.group==Group.BAD && random.nextInt(100)>95) {
+            fire();
+            randomDir();
+        }
+    }
+
+    private void randomDir() {
+        this.dir = Dir.values()[random.nextInt(4)];
     }
 
     public void fire() {
@@ -118,6 +125,9 @@ public class Tank {
 
 
         tf.bullets.add(new Bullet(bX,bY,this.dir,this.group,this.tf));
+
+        if(this.group == Group.GOOD) new Thread(()->new Audio("audio/tank_fire.wav").play()).start();
+
     }
 
     public void die() {
