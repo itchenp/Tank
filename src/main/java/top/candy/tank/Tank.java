@@ -8,7 +8,7 @@ public class Tank {
 
     private int x,y;
     private Dir dir = Dir.UP;
-    private static final int SPEED = 2;
+    private static final int SPEED = 10;
 
     public static int WIDTH ,HIGHT;
     private boolean moving = false;
@@ -122,6 +122,6 @@ public class Tank {
 
     public void die() {
         this.living = false;
-        tf.explode = new Explode(this.x,this.y,true,this.tf);
+        tf.explodes.add(new Explode(this.x,this.y,this.tf));
     }
 }

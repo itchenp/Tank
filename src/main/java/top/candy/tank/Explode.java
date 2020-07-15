@@ -10,22 +10,18 @@ public class Explode {
     private int x,y;
     private TankFrame tf;
     private int step = 0;
-    private boolean explode = false;
 
 
-    public Explode(int x, int y,boolean explode,TankFrame tf) {
+    public Explode(int x, int y,TankFrame tf) {
         this.x = x;
         this.y = y;
-        this.explode = explode;
         this.tf = tf;
     }
 
     public void paint(Graphics g) {
-        if(!explode) return;
 
         if(step >= ResourceMgr.explodes.length) {
-            step = 0;
-            explode = false;
+            tf.explodes.remove(this);
             return;
         }
 
