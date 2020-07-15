@@ -132,6 +132,10 @@ public class Tank {
 
     public void die() {
         this.living = false;
-        tf.explodes.add(new Explode(this.x,this.y,this.tf));
+
+        int eX = this.x+Tank.WIDTH/2-Explode.WIDTH/2;
+        int eY = this.y+Tank.HIGHT/2-Explode.HIGHT/2;
+
+        tf.explodes.add(new Explode(eX,eY,this.tf));
     }
 }
