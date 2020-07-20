@@ -1,6 +1,7 @@
 package top.candy.tank;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 
@@ -60,22 +61,27 @@ public class Tank {
     }
 
     private void changeWidthAndHigth(){
+        BufferedImage tankBufferedImage;
         switch (dir){
             case RIGHT:
-                WIDTH = ResourceMgr.goodTankR.getWidth();
-                HIGHT = ResourceMgr.goodTankR.getHeight();
+                tankBufferedImage = this.group == Group.GOOD?ResourceMgr.goodTankR:ResourceMgr.badTankR;
+                WIDTH = tankBufferedImage.getWidth();
+                HIGHT = tankBufferedImage.getHeight();
                 break;
             case LEFT:
-                WIDTH = ResourceMgr.goodTankL.getWidth();
-                HIGHT = ResourceMgr.goodTankL.getHeight();
+                tankBufferedImage = this.group == Group.GOOD?ResourceMgr.goodTankL:ResourceMgr.badTankL;
+                WIDTH = tankBufferedImage.getWidth();
+                HIGHT = tankBufferedImage.getHeight();
                 break;
             case DOWN:
-                WIDTH = ResourceMgr.goodTankD.getWidth();
-                HIGHT = ResourceMgr.goodTankD.getHeight();
+                tankBufferedImage = this.group == Group.GOOD?ResourceMgr.goodTankD:ResourceMgr.badTankD;
+                WIDTH = tankBufferedImage.getWidth();
+                HIGHT = tankBufferedImage.getHeight();
                 break;
             case UP:
-                WIDTH = ResourceMgr.goodTankU.getWidth();
-                HIGHT = ResourceMgr.goodTankU.getHeight();
+                tankBufferedImage = this.group == Group.GOOD?ResourceMgr.goodTankU:ResourceMgr.badTankU;
+                WIDTH = tankBufferedImage.getWidth();
+                HIGHT = tankBufferedImage.getHeight();
                 break;
         }
     }
@@ -86,10 +92,10 @@ public class Tank {
         }
 
         switch (dir){
-            case RIGHT: g.drawImage(ResourceMgr.goodTankR,x,y,null);break;
-            case LEFT: g.drawImage(ResourceMgr.goodTankL,x,y,null);break;
-            case DOWN: g.drawImage(ResourceMgr.goodTankD,x,y,null);break;
-            case UP: g.drawImage(ResourceMgr.goodTankU,x,y,null);break;
+            case RIGHT: g.drawImage(this.group == Group.GOOD?ResourceMgr.goodTankR:ResourceMgr.badTankR,x,y,null);break;
+            case LEFT: g.drawImage(this.group == Group.GOOD?ResourceMgr.goodTankL:ResourceMgr.badTankL,x,y,null);break;
+            case DOWN: g.drawImage(this.group == Group.GOOD?ResourceMgr.goodTankD:ResourceMgr.badTankD,x,y,null);break;
+            case UP: g.drawImage(this.group == Group.GOOD?ResourceMgr.goodTankU:ResourceMgr.badTankU,x,y,null);break;
         }
 
         changeWidthAndHigth();
@@ -106,11 +112,35 @@ public class Tank {
             case UP: y -= SPEED;break;
         }
 
-        tankRec.setBounds(x,y,WIDTH,HIGHT);
-
         if(this.group==Group.BAD && random.nextInt(100)>95) {
             fire();
+        }
+
+        if(this.group==Group.BAD && random.nextInt(100)>95) {
             randomDir();
+        }
+
+        boundsCheck();
+
+        tankRec.setBounds(x,y,WIDTH,HIGHT);
+    }
+
+    private void boundsCheck() {
+        if(x<2) {
+            x=2;
+            this.dir = Dir.RIGHT;
+        }
+        if(y<28) {
+            y = 28;
+            this.dir = Dir.DOWN;
+        }
+        if(x> TankFrame.GAME_WIDTH-Tank.WIDTH -2) {
+            x = TankFrame.GAME_WIDTH -Tank.WIDTH -2;
+            this.dir = Dir.LEFT;
+        }
+        if(y> TankFrame.GAME_HEIGTH-Tank.HIGHT -2) {
+            y = TankFrame.GAME_HEIGTH -Tank.HIGHT -2;
+            this.dir = Dir.UP;
         }
     }
 

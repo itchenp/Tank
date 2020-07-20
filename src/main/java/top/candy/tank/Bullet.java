@@ -24,7 +24,7 @@ public class Bullet {
         this.dir = dir;
         this.group = group;
         this.tf = tf;
-        bulletRec = new Rectangle();
+        bulletRec = new Rectangle(x,y,WIDTH,HIGHT);
     }
 
     public void paint(Graphics g) {
