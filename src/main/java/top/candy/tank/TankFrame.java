@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    static final int GAME_WIDTH = 1080,GAME_HEIGTH = 960;
+    static final int GAME_WIDTH = Integer.parseInt((String)PropertiesMgr.get("gameWidth")),GAME_HEIGTH = Integer.parseInt((String)PropertiesMgr.get("gameHeight"));
 
     Tank tank = new Tank(GAME_WIDTH/2,GAME_HEIGTH-100,Dir.UP,Group.GOOD,this);
     List<Bullet> bullets = new ArrayList<Bullet>();
@@ -103,7 +103,7 @@ public class TankFrame extends Frame {
                     break;
             }
 
-            new Thread(()->new Audio("./audio/tank_move.wav").play()).start();
+            new Thread(()->new Audio("audio/tank_move.wav").play()).start();
 
 
             setMainTankDir();

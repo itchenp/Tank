@@ -9,7 +9,7 @@ public class Tank {
 
     private int x,y;
     private Dir dir = Dir.UP;
-    private static final int SPEED = 8;
+    private static final int SPEED = Integer.parseInt((String)PropertiesMgr.get("tankSpeed"));
 
     public static int WIDTH ,HIGHT;
     private boolean moving = true;
